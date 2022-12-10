@@ -1,0 +1,190 @@
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+  print(1 + '2');
+  ANS: Syntax Error
+  Reason: Because the String type can't be assigned to num type, to resolve this:
+  if we want to make addition: we must cast the String value to int,
+  Or if we need to do concatenation: we have to change the int value to String
+  by calling .toSting or using interpolation ${}
+
+  var foo = '1';
+  
+  foo = 1; 
+
+  print(foo);
+  ANS: Syntax Error
+    Reason: Because the var foo is initialized by String value, so it's type was set to String,
+    so we can't change its value to int by assigning integer value.
+    to resolve this: we can change its type to dynamic or Object
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////
+
+
+
+
+
+
+
+
+  var list = [2, 3, 5, 1];
+
+  #1
+  var matched = list.firstWhere((e) => e == 1)
+  
+  #2
+  var matched = list.firstWhere((e) => e == 10)
+  
+  #3 write code to return first empty if the predicate in `firstWhere` method not match any elements
+
+  // Your code here..
+
+  ANS: We can make it by many ways: I implemented two extension method on List, doing the same purpose
+  first one: loops on the list, if it found the element, will return it, else it will return 'Element Not Found'.
+  second one: calls firstWhere method inside try-catch clause, if there is exception => I handle it in the catch clause
+  and return 'Element Not Found'.
+
+  print(matched);
+  
+  
+
+
+
+
+
+
+
+
+
+/////////////////////////
+
+
+  var apps = ['facebook', 'google', 'instagram'];
+
+
+  // final myApps = apps;  
+  // myApps[2] = 'najiz';
+  // print(myApps);
+  ANS: [facebook, google, najiz]
+  Reason: Because we modified the third place in myApps, and changed its value to 'najiz' instead of 'instagram'.
+  // print(apps);
+  ANS: [facebook, google, najiz]
+  Reason: That's because we copied the object references (myApps = apps) and not the content of the list.
+  So after the modification on myApps, apps has a reference to the same object in memory as myApps.
+  So any operation on one of them, affect both.
+
+
+
+  var apps = ['facebook', 'google', 'instagram'];
+
+  const favoriteApps = apps;  
+  favoriteApps[2] = 'najiz';
+  print(favoriteApps);
+  print(apps);
+
+  ANS: Syntax Error
+  Reason: That's because favoriteApps is declared as constant, so it must be initialized by constant value.
+  If we declared apps as constant, both print methods will throw Runtime exception because constant values are unmodifiable.
+
+
+
+
+
+
+  /////////////////////
+
+
+
+
+
+
+
+
+
+  final text = '<p style="font-size: 8px">Hello World!</p>';
+
+
+  # write Regular expression to capture string between tags `Hello World!` and code inside style `font-size: 8px`
+  final regex = RegExp('');
+  
+  # Print Match
+  print(regex.firstMatch(text)?.group(1));
+
+
+
+  Hint: I solved it by two ways
+
+
+
+
+
+
+  //////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+  late var f;
+  for (var i = 0; i < 10; i++) {
+    f = Foo();
+  }
+
+  print(f.a);
+  ANS: Runtime Error
+  Reason: because The static variables belong to the class instead of a specific instance.
+  so static variable 'a' can't be used a getter, so it can't be accessed by any instance from the class, it can be only accessed by the class name.
+
+
+  print(Foo.a);
+  ANS: 10
+  Reason: because static variable is common to all instances of a class, so single copy of a static method is spread across all instances of a class.
+  and the static variable 'a' is incremented by one every time the class constructor invoked.
+  and the Foo constructor invoked 10 times by the for loop, so the value of the static variable 'a' will be 10.
+
+
+  print(f._p); 
+  ANS: 1
+  Reason: because the private variable 'p' is a class member which is not affected by any operation,
+  so it's value remains 1 as it's initialized.
+  Also, in the last iteration of the loop the var 'f' is initialized with new instance of class 'Foo'
+  where the variable 'p' was initialized by 1 and not modified anywhere.
+ 
+  class Foo {
+    static int a = 0;
+    int _p = 1;
+
+    Foo() {
+      a++;
+    }
+  }
+
+
+
+
+//
