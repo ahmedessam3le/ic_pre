@@ -25,7 +25,7 @@
   print(foo);
   ANS: Syntax Error
     Reason: Because the var foo is initialized by String value, so it's type was set to String,
-    so we can't change its value to int by assigning integer value.
+    so we can't change its type to int by assigning integer value.
     to resolve this: we can change its type to dynamic or Object
 
 
